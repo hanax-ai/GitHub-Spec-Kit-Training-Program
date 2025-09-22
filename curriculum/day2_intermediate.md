@@ -571,9 +571,9 @@ Commit and push the following to HX-KB repository:
 ## 📚 Resources and References
 
 ### Day 2 Specific Resources
-- [Sprint Documentation Template](templates/sprint-summary-template.md)
-- [Architecture Documentation Guide](docs/guides/architecture-documentation.md)
-- [Runbook Development Best Practices](docs/guides/runbook-best-practices.md)
+- [Sprint Documentation Template](../templates/sprint-summary-template.md)
+- [Architecture Documentation Guide](../docs/guides/architecture-documentation.md)
+- [Runbook Development Best Practices](../docs/guides/runbook-best-practices.md)
 - [Content Validation Tools](tools/content-validation/)
 
 ### Integration References

@@ -1,0 +1,99 @@
+{
+  "total_nitpicks": 29,
+  "missed_nitpicks": 7,
+  "existing_defects": 21,
+  "new_defect_entries": [
+    {
+      "id": "DEF-022",
+      "file": "update_defect_log.py (2)",
+      "line_range": "1-1",
+      "title": "Shebang present but script may not be executable.",
+      "description": "Either `chmod +x update_defect_log.py` or remove the shebang and run via `python3 update_defect_log.py`.\n\n---",
+      "severity": "Nitpick",
+      "value": "Low",
+      "category": "General improvement",
+      "status": "Evaluated - No Action",
+      "resolution_notes": "Nitpick comment - General improvement. Low impact, no remediation needed.",
+      "should_remediate": false
+    },
+    {
+      "id": "DEF-023",
+      "file": "update_defect_log.py (2)",
+      "line_range": "50-54",
+      "title": "Wrap top-level I/O in a main guard.",
+      "description": "Avoid side effects on import; makes testing easier.\n\n```diff\n-# Write the updated defect log\n-with open('DEFECT_LOG.md', 'w') as f:\n-    f.write('\\n'.join(updated_lines))\n-\n-print(f\"Updated defect log with {len(resolved_defects)} resolved defects\")\n+if __name__ == \"__main__\":\n+    with open('DEFECT_LOG.md', 'w', encoding='utf-8') as f:\n+        f.write('\\n'.join(updated_lines))\n+    print(f\"Updated defect log with {len(resolved_defects)} resolved defects\")\n```",
+      "severity": "Nitpick",
+      "value": "Low",
+      "category": "General improvement",
+      "status": "Evaluated - No Action",
+      "resolution_notes": "Nitpick comment - General improvement. Low impact, no remediation needed.",
+      "should_remediate": false
+    },
+    {
+      "id": "DEF-024",
+      "file": "fix_workflows.py (3)",
+      "line_range": "42-45",
+      "title": "Wrap side effects in `if __name__ == \"__main__\":` and handle non-zero exit.",
+      "description": "Prevents unexpected edits on import.\n\n```diff\n-# Fix the workflow issues\n-if fix_workflow_scripts('curriculum/day2_intermediate.md'):\n-    print(\"Fixed workflow scripts in curriculum/day2_intermediate.md\")\n+if __name__ == \"__main__\":\n+    ok = fix_workflow_scripts('curriculum/day2_intermediate.md')\n+    print(\"Fixed workflow scripts in curriculum/day2_intermediate.md\" if ok else \"No changes applied\")\n+    raise SystemExit(0 if ok else 1)\n```\n\n---",
+      "severity": "Nitpick",
+      "value": "Low",
+      "category": "General improvement",
+      "status": "Evaluated - No Action",
+      "resolution_notes": "Nitpick comment - General improvement. Low impact, no remediation needed.",
+      "should_remediate": false
+    },
+    {
+      "id": "DEF-025",
+      "file": "fix_workflows.py (3)",
+      "line_range": "1-1",
+      "title": "Shebang present but file likely not executable.",
+      "description": "Either `chmod +x fix_workflows.py` or remove the shebang.",
+      "severity": "Nitpick",
+      "value": "Low",
+      "category": "General improvement",
+      "status": "Evaluated - No Action",
+      "resolution_notes": "Nitpick comment - General improvement. Low impact, no remediation needed.",
+      "should_remediate": false
+    },
+    {
+      "id": "DEF-026",
+      "file": "curriculum/day2_intermediate.md (1)",
+      "line_range": "574-577",
+      "title": "Fix broken relative links to templates/guides from curriculum/.",
+      "description": "Adjust to parent directory.\n\n```diff\n-- [Sprint Documentation Template](templates/sprint-summary-template.md)\n-- [Architecture Documentation Guide](docs/guides/architecture-documentation.md)\n-- [Runbook Development Best Practices](docs/guides/runbook-best-practices.md)\n+- [Sprint Documentation Template](../templates/sprint-summary-template.md)\n+- [Architecture Documentation Guide](../docs/guides/architecture-documentation.md)\n+- [Runbook Development Best Practices](../docs/guides/runbook-best-practices.md)\n```",
+      "severity": "Nitpick",
+      "value": "Medium",
+      "category": "Best practices/Maintainability",
+      "status": "Pending",
+      "resolution_notes": "Nitpick comment - Best practices/Maintainability. Scheduled for remediation.",
+      "should_remediate": true
+    },
+    {
+      "id": "DEF-027",
+      "file": "fix_defects.py (5)",
+      "line_range": "58-66",
+      "title": "Generalize bold-to-heading for other callouts (e.g., \ud83c\udfaf HX-*).",
+      "description": "Covers the remaining MD036 instances.\n\n```diff\n-    # Replace **HX-Infrastructure Practical Exercise:** with #### HX-Infrastructure Practical Exercise\n-    content = re.sub(r'\\*\\*HX-Infrastructure Practical Exercise:\\*\\*', r'#### HX-Infrastructure Practical Exercise', content)\n+    # Replace bold HX-* callouts with H4 headings\n+    content = re.sub(r'\\*\\*\\s*\ud83c\udfaf?\\s*HX-[^*]+?:\\s*\\*\\*', lambda m: '#### ' + re.sub(r'^\\*\\*\\s*|\\s*\\*\\*$', '', m.group(0)).rstrip(':').strip(), content)\n```\n\n---",
+      "severity": "Nitpick",
+      "value": "Low",
+      "category": "Code formatting/Style",
+      "status": "Evaluated - No Action",
+      "resolution_notes": "Nitpick comment - Code formatting/Style. Low impact, no remediation needed.",
+      "should_remediate": false
+    },
+    {
+      "id": "DEF-028",
+      "file": "fix_defects.py (5)",
+      "line_range": "1-1",
+      "title": "Shebang present but file likely not executable.",
+      "description": "Either `chmod +x fix_defects.py` or remove the shebang.",
+      "severity": "Nitpick",
+      "value": "Low",
+      "category": "General improvement",
+      "status": "Evaluated - No Action",
+      "resolution_notes": "Nitpick comment - General improvement. Low impact, no remediation needed.",
+      "should_remediate": false
+    }
+  ],
+  "analysis_date": "2025-09-22T03:32:42.996299"
+}
