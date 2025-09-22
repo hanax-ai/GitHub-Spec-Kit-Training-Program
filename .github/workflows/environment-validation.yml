@@ -1,0 +1,133 @@
+name: Environment Validation
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+  workflow_dispatch:
+  schedule:
+    - cron: '0 8 * * 1'  # Weekly validation on Mondays
+
+env:
+  GITHUB_TOKEN: ${{ secrets.HX_SPEC_KIT_SECRET }}
+  HX_TOKEN_VAR: ${{ vars.HX_SPEC_KIT_VAR }}
+
+jobs:
+  validate-environment:
+    runs-on: ubuntu-latest
+    name: Validate Training Environment
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+      with:
+        token: ${{ secrets.HX_SPEC_KIT_SECRET }}
+    
+    - name: Setup Git Configuration
+      run: |
+        git config --global user.name "hanax-ai"
+        git config --global user.email "jarvisr@hana-x.ai"
+    
+    - name: Validate Repository Structure
+      run: |
+        echo "🔍 Validating repository structure..."
+        
+        # Check required directories
+        required_dirs=("curriculum" "exercises" "teaching_materials" "environment_setup" "archive_integration")
+        for dir in "${required_dirs[@]}"; do
+          if [ -d "$dir" ]; then
+            echo "✅ Directory found: $dir"
+          else
+            echo "❌ Missing directory: $dir"
+            exit 1
+          fi
+        done
+        
+        # Check required files
+        required_files=("README.md" "QUICK_START.md" "validate_environment.sh")
+        for file in "${required_files[@]}"; do
+          if [ -f "$file" ]; then
+            echo "✅ File found: $file"
+          else
+            echo "❌ Missing file: $file"
+            exit 1
+          fi
+        done
+    
+    - name: Validate Curriculum Files
+      run: |
+        echo "📚 Validating curriculum files..."
+        curriculum_files=("day1_foundation.md" "day2_intermediate.md" "day3_advanced.md" "day4_complex_projects.md" "day5_mastery.md")
+        
+        for file in "${curriculum_files[@]}"; do
+          if [ -f "curriculum/$file" ]; then
+            echo "✅ Curriculum file found: $file"
+          else
+            echo "❌ Missing curriculum file: $file"
+            exit 1
+          fi
+        done
+    
+    - name: Validate Exercise Files
+      run: |
+        echo "💪 Validating exercise files..."
+        exercise_files=("progressive_exercises.md" "validation_checkpoints.md")
+        
+        for file in "${exercise_files[@]}"; do
+          if [ -f "exercises/$file" ]; then
+            echo "✅ Exercise file found: $file"
+          else
+            echo "❌ Missing exercise file: $file"
+            exit 1
+          fi
+        done
+    
+    - name: Run Environment Validation Script
+      run: |
+        echo "🛠️ Running environment validation script..."
+        chmod +x validate_environment.sh
+        ./validate_environment.sh
+    
+    - name: Validate Authentication Configuration
+      run: |
+        echo "🔐 Validating authentication configuration..."
+        if [ -n "${{ secrets.HX_SPEC_KIT_SECRET }}" ]; then
+          echo "✅ HX_SPEC_KIT_SECRET is configured"
+        else
+          echo "❌ HX_SPEC_KIT_SECRET is not configured"
+          exit 1
+        fi
+        
+        if [ -n "${{ vars.HX_SPEC_KIT_VAR }}" ]; then
+          echo "✅ HX_SPEC_KIT_VAR is configured"
+        else
+          echo "❌ HX_SPEC_KIT_VAR is not configured"
+          exit 1
+        fi
+    
+    - name: Generate Validation Report
+      run: |
+        echo "📊 Generating validation report..."
+        echo "# Environment Validation Report" > validation_report.md
+        echo "**Date:** $(date)" >> validation_report.md
+        echo "**Status:** ✅ All validations passed" >> validation_report.md
+        echo "" >> validation_report.md
+        echo "## Validated Components" >> validation_report.md
+        echo "- ✅ Repository structure" >> validation_report.md
+        echo "- ✅ Curriculum files (5 days)" >> validation_report.md
+        echo "- ✅ Exercise files" >> validation_report.md
+        echo "- ✅ Environment validation script" >> validation_report.md
+        echo "- ✅ Authentication configuration" >> validation_report.md
+        echo "" >> validation_report.md
+        echo "## Training Program Status" >> validation_report.md
+        echo "**Ready for immediate execution** 🚀" >> validation_report.md
+        
+        cat validation_report.md
+    
+    - name: Upload Validation Report
+      uses: actions/upload-artifact@v4
+      with:
+        name: validation-report
+        path: validation_report.md
+        retention-days: 30
