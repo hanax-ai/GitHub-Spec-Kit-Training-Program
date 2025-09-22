@@ -84,22 +84,22 @@ In your AI agent, use the `/specify` command to create a specification for:
 
 #### 2.2 The Four Phases Deep Dive (30 minutes)
 
-**Phase 1: Specify**
+#### Phase 1: Specify
 - Define clear, actionable requirements
 - Establish success criteria and constraints
 - Document assumptions and dependencies
 
-**Phase 2: Plan**
+#### Phase 2: Plan
 - Break down specifications into implementable tasks
 - Sequence work for optimal flow
 - Identify potential risks and mitigation strategies
 
-**Phase 3: Implement**
+#### Phase 3: Implement
 - Execute planned tasks with AI assistance
 - Maintain quality through continuous validation
 - Document decisions and learnings
 
-**Phase 4: Validate**
+#### Phase 4: Validate
 - Test implementations against specifications
 - Gather feedback and iterate
 - Prepare for next development cycle

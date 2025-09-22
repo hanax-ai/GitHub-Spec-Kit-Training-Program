@@ -26,7 +26,7 @@ ls -la docs/
 # Validate Day 1 deliverables
 cat docs/analysis/day1-assessment.md | head -20
 cat docs/adrs/ADR-0001-training-integration.md | head -20
-```
+```yaml
 
 **Review Checklist:**
 - [ ] Day 1 analysis completed and documented
@@ -54,7 +54,7 @@ cd HX-Infrastructure-Knowledge-Base
 uvx --from git+https://github.com/github/spec-kit.git specify init sprint_documentation --ai copilot
 uvx --from git+https://github.com/github/spec-kit.git specify init architecture_docs --ai copilot
 uvx --from git+https://github.com/github/spec-kit.git specify init operations_runbooks --ai copilot
-```
+```yaml
 
 ### Hour 2: Sprint Documentation Integration
 
@@ -75,7 +75,7 @@ Based on the integration plan, create comprehensive sprint summaries:
 mkdir -p docs/history/sprints
 mkdir -p docs/architecture
 mkdir -p docs/operations/runbooks
-```
+```yaml
 
 Create detailed sprint summaries using Spec Kit:
 1. Use `/specify` to define sprint documentation requirements
@@ -116,6 +116,7 @@ Create detailed sprint summaries using Spec Kit:
 - [Challenge 2 with solution]
 
 ## Metrics and Impact
+
 | Metric | Before | After | Improvement |
 |--------|--------|-------|-------------|
 | [Metric 1] | [Value] | [Value] | [%] |
@@ -124,7 +125,7 @@ Create detailed sprint summaries using Spec Kit:
 ## Next Sprint Preparation
 - [Preparation item 1]
 - [Preparation item 2]
-```
+```yaml
 
 #### 2.2 Architecture Documentation Integration (30 minutes)
 
@@ -200,7 +201,7 @@ Using Spec Kit methodology:
 ```bash
 [command 1]
 [command 2]
-```
+```yaml
 **Expected Output:** [What you should see]
 **Validation:** [How to confirm success]
 
@@ -208,6 +209,7 @@ Using Spec Kit methodology:
 [Continue pattern...]
 
 ## Troubleshooting
+
 | Issue | Symptoms | Resolution |
 |-------|----------|------------|
 | [Issue 1] | [Symptoms] | [Solution] |
@@ -220,7 +222,7 @@ Using Spec Kit methodology:
 - [ ] [Validation check 1]
 - [ ] [Validation check 2]
 - [ ] [Validation check 3]
-```
+```yaml
 
 #### 3.2 Monitoring and Incident Response (30 minutes)
 
@@ -240,7 +242,7 @@ Create comprehensive monitoring documentation based on Sprint 2 learnings:
    - Post-incident review and improvement processes
 
 **🎯 Implementation Task:**
-Create `docs/operations/monitoring/incident-response.md` with:
+Create `docs/operations/runbooks/incident-response.md` with:
 - Incident response workflow
 - Escalation matrix
 - Communication templates
@@ -275,7 +277,7 @@ Create a comprehensive specification for the HX-Infrastructure system:
 ```bash
 # Create system specification
 uvx --from git+https://github.com/github/spec-kit.git specify init hx_infrastructure_system --ai copilot
-```
+```yaml
 
 **Specification Components:**
 1. **Infrastructure Layer:** Compute, storage, networking
@@ -353,8 +355,11 @@ on:
 jobs:
   validate-content:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
     
     - name: Validate Markdown Links
       uses: gaurav-nelson/github-action-markdown-link-check@v1
@@ -384,7 +389,7 @@ jobs:
           # Add bash syntax validation here
         done
 EOF
-```
+```yaml
 
 #### 5.2 Continuous Integration for Documentation (30 minutes)
 
@@ -420,12 +425,15 @@ on:
 jobs:
   content-validation:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: read
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v3
+      uses: actions/checkout@b4ffde65f46336ab88eb53be808477a3936bae11 # v4
       
     - name: Setup Node.js
-      uses: actions/setup-node@v3
+      uses: actions/setup-node@60edb5dd545a775178f52524783378180af0d1f8 # v4
       with:
         node-version: '18'
         
@@ -442,16 +450,16 @@ jobs:
       
     - name: Validate documentation completeness
       run: |
-        python3 scripts/validate-completeness.py
+        if [ -f scripts/validate-completeness.py ]; then python3 scripts/validate-completeness.py; else echo "Skipping completeness validation - script not found"; fi
         
     - name: Generate content metrics
       run: |
-        python3 scripts/generate-metrics.py > metrics/content-metrics.json
+        if [ -f scripts/generate-metrics.py ]; then python3 scripts/generate-metrics.py > metrics/content-metrics.json; else echo "Skipping metrics generation - script not found"; fi
         
     - name: Update search index
       run: |
-        python3 scripts/update-search-index.py
-```
+        if [ -f scripts/update-search-index.py ]; then python3 scripts/update-search-index.py; else echo "Skipping search index update - script not found"; fi
+```yaml
 
 ### Hour 6: Integration and Deployment
 
@@ -491,7 +499,7 @@ mkdir -p examples/{playbooks,modules,configs}
 
 # Populate with structured content
 # Use Spec Kit to generate content systematically
-```
+```yaml
 
 #### 6.2 Validation and Quality Assurance (30 minutes)
 
@@ -531,7 +539,7 @@ git commit -m "Test contribution workflow"
 git push origin test-contribution
 
 # Create test PR and validate review process
-```
+```yaml
 
 #### 6.3 Day 2 Deliverables and Wrap-up (15 minutes)
 
