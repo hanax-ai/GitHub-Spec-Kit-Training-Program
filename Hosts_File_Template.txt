@@ -1,0 +1,193 @@
+
+# HX-Infrastructure Hosts File Template
+# Version: 1.0 - Bootstrap/Fallback Configuration
+# Date: 2025-09-22
+# Management: Manual (will migrate to Ansible in future iterations)
+# Purpose: Local DNS resolution for training environment
+
+# IMPORTANT: This template provides standardized HX-Infrastructure entries
+# for both Ubuntu and Windows hosts files. Copy the appropriate section
+# and append to your existing hosts file.
+
+# ============================================================================
+# UBUNTU HOSTS FILE ENTRIES (/etc/hosts)
+# ============================================================================
+
+# HX-Infrastructure - Training Environment
+# Version: 1.0 - Bootstrap/Fallback Configuration
+# Management: Manual (will migrate to Ansible in future iterations)
+# Purpose: Local DNS resolution for training environment
+192.168.1.100    dev-test.hana-x.ai
+192.168.1.100    api.dev-test.hana-x.ai
+192.168.1.100    app.dev-test.hana-x.ai
+192.168.1.100    db.dev-test.hana-x.ai
+192.168.1.100    cache.dev-test.hana-x.ai
+192.168.1.100    monitor.dev-test.hana-x.ai
+# End HX-Infrastructure
+
+# ============================================================================
+# WINDOWS HOSTS FILE ENTRIES (C:\Windows\System32\drivers\etc\hosts)
+# ============================================================================
+
+# HX-Infrastructure - Training Environment
+# Version: 1.0 - Bootstrap/Fallback Configuration
+# Management: Manual (will migrate to Ansible in future iterations)
+# Purpose: Local DNS resolution for training environment
+192.168.1.100    dev-test.hana-x.ai
+192.168.1.100    api.dev-test.hana-x.ai
+192.168.1.100    app.dev-test.hana-x.ai
+192.168.1.100    db.dev-test.hana-x.ai
+192.168.1.100    cache.dev-test.hana-x.ai
+192.168.1.100    monitor.dev-test.hana-x.ai
+# End HX-Infrastructure
+
+# ============================================================================
+# IMPLEMENTATION INSTRUCTIONS
+# ============================================================================
+
+## Ubuntu Implementation
+# Ensure 192.168.1.100 is reachable in your network/VPN and not already assigned.
+
+### 1. Backup Current Hosts File
+sudo cp /etc/hosts /etc/hosts.backup
+
+### 2. Add HX-Infrastructure Entries
+sudo tee -a /etc/hosts << 'EOF'
+
+# HX-Infrastructure - Training Environment
+# Version: 1.0 - Bootstrap/Fallback Configuration
+# Management: Manual (will migrate to Ansible in future iterations)
+# Purpose: Local DNS resolution for training environment
+192.168.1.100    dev-test.hana-x.ai
+192.168.1.100    api.dev-test.hana-x.ai
+192.168.1.100    app.dev-test.hana-x.ai
+192.168.1.100    db.dev-test.hana-x.ai
+192.168.1.100    cache.dev-test.hana-x.ai
+192.168.1.100    monitor.dev-test.hana-x.ai
+# End HX-Infrastructure
+EOF
+
+### 3. Verify Implementation
+# Test domain resolution via nsswitch
+getent hosts dev-test.hana-x.ai
+# Should include 192.168.1.100
+
+# Test ping (if server responds)
+ping -c 1 dev-test.hana-x.ai
+
+# Verify hosts file format
+grep -A 10 "HX-Infrastructure" /etc/hosts
+
+### 4. Rollback if Needed
+sudo cp /etc/hosts.backup /etc/hosts
+sudo systemctl restart systemd-resolved
+
+## Windows Implementation
+
+### 1. Open PowerShell as Administrator
+
+### 2. Backup Current Hosts File
+Copy-Item C:\Windows\System32\drivers\etc\hosts C:\Windows\System32\drivers\etc\hosts.backup
+
+### 3. Add HX-Infrastructure Entries
+Add-Content -Encoding ASCII C:\Windows\System32\drivers\etc\hosts @"
+
+# HX-Infrastructure - Training Environment
+# Version: 1.0 - Bootstrap/Fallback Configuration
+# Management: Manual (will migrate to Ansible in future iterations)
+# Purpose: Local DNS resolution for training environment
+192.168.1.100    dev-test.hana-x.ai
+192.168.1.100    api.dev-test.hana-x.ai
+192.168.1.100    app.dev-test.hana-x.ai
+192.168.1.100    db.dev-test.hana-x.ai
+192.168.1.100    cache.dev-test.hana-x.ai
+192.168.1.100    monitor.dev-test.hana-x.ai
+# End HX-Infrastructure
+"@
+
+### 4. Verify Implementation
+# Confirm entry exists and resolves
+findstr dev-test.hana-x.ai C:\Windows\System32\drivers\etc\hosts
+ping dev-test.hana-x.ai -n 1
+# Should show 192.168.1.100
+
+# Test ping (if server responds)
+ping dev-test.hana-x.ai -n 1
+
+### 5. Rollback if Needed
+Copy-Item C:\Windows\System32\drivers\etc\hosts.backup C:\Windows\System32\drivers\etc\hosts
+# Restart DNS Client service if needed
+Restart-Service Dnscache
+
+# ============================================================================
+# DOMAIN MAPPING REFERENCE
+# ============================================================================
+
+# Primary Domains:
+# dev-test.hana-x.ai          - Main development/test environment
+# api.dev-test.hana-x.ai      - API services endpoint
+# app.dev-test.hana-x.ai      - Application frontend
+# db.dev-test.hana-x.ai       - Database services
+# cache.dev-test.hana-x.ai    - Caching services (Redis, etc.)
+# monitor.dev-test.hana-x.ai  - Monitoring and metrics
+
+# IP Address: 192.168.1.100
+# Purpose: Bootstrap/fallback configuration for training environment
+# Management: Manual configuration (will migrate to Ansible)
+
+# ============================================================================
+# MANAGEMENT NOTES
+# ============================================================================
+
+# Current Approach: Manual Configuration
+# - Direct editing of hosts files on each system
+# - Version controlled templates for consistency
+# - Manual verification and rollback procedures
+
+# Future Approach: Ansible Management
+# - Automated deployment across all training systems
+# - Centralized configuration management
+# - Automated verification and rollback
+# - Environment-specific configurations
+
+# Migration Plan:
+# 1. Complete Module 1 with manual configuration
+# 2. Develop Ansible playbooks for hosts file management
+# 3. Test Ansible deployment in isolated environment
+# 4. Migrate to Ansible-managed configuration
+# 5. Retire manual configuration approach
+
+# Version History:
+# v1.0 (2025-09-22) - Initial bootstrap configuration for Module 1
+# Future versions will be managed through Ansible
+
+# ============================================================================
+# TROUBLESHOOTING
+# ============================================================================
+
+## Common Issues:
+
+### Domain Not Resolving
+# Check hosts file syntax
+# Verify no conflicting entries
+# Clear DNS cache (systemd-resolved restart / Dnscache restart)
+# Test with direct IP access
+
+### Permission Denied (Windows)
+# Ensure PowerShell running as Administrator
+# Check file permissions on hosts file
+# Disable antivirus temporarily if blocking
+
+### Permission Denied (Ubuntu)
+# Ensure using sudo for hosts file edits
+# Check file ownership and permissions
+# Verify no file locks or processes using hosts file
+
+### Backup and Recovery
+# Always create backup before editing
+# Test rollback procedure before making changes
+# Document all changes for audit trail
+
+# ============================================================================
+# END OF TEMPLATE
+# ============================================================================
