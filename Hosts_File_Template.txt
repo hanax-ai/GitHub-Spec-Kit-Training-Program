@@ -17,11 +17,17 @@
 # Version: 1.0 - Bootstrap/Fallback Configuration
 # Management: Manual (will migrate to Ansible in future iterations)
 # Purpose: Local DNS resolution for training environment
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    api.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    app.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    db.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    cache.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    monitor.dev-test.hana-x.ai
 # End HX-Infrastructure
 
@@ -33,11 +39,17 @@
 # Version: 1.0 - Bootstrap/Fallback Configuration
 # Management: Manual (will migrate to Ansible in future iterations)
 # Purpose: Local DNS resolution for training environment
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    api.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    app.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    db.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    cache.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    monitor.dev-test.hana-x.ai
 # End HX-Infrastructure
 
@@ -46,31 +58,48 @@
 # ============================================================================
 
 ## Ubuntu Implementation
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 # Ensure 192.168.1.100 is reachable in your network/VPN and not already assigned.
+Optional: verify no conflict
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
+Ubuntu: `ping -c 1 192.168.1.100 || echo "no reply (ok for bootstrap)"`
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
+Windows: `ping -n 1 192.168.1.100`
 
 ### 1. Backup Current Hosts File
 sudo cp /etc/hosts /etc/hosts.backup
 
 ### 2. Add HX-Infrastructure Entries
+if ! grep -q "^# HX-Infrastructure - Training Environment" /etc/hosts; then
 sudo tee -a /etc/hosts << 'EOF'
 
 # HX-Infrastructure - Training Environment
 # Version: 1.0 - Bootstrap/Fallback Configuration
 # Management: Manual (will migrate to Ansible in future iterations)
 # Purpose: Local DNS resolution for training environment
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    api.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    app.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    db.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    cache.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    monitor.dev-test.hana-x.ai
 # End HX-Infrastructure
 EOF
+  sudo systemd-resolve --flush-caches || true
+fi
 
 ### 3. Verify Implementation
 # Test domain resolution via nsswitch
-getent hosts dev-test.hana-x.ai
-# Should include 192.168.1.100
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
+getent hosts dev-test.hana-x.ai | grep -F '192.168.1.100'
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
+# Test domain resolution via nsswitch (should include 192.168.1.100)
 
 # Test ping (if server responds)
 ping -c 1 dev-test.hana-x.ai
@@ -96,20 +125,26 @@ Add-Content -Encoding ASCII C:\Windows\System32\drivers\etc\hosts @"
 # Version: 1.0 - Bootstrap/Fallback Configuration
 # Management: Manual (will migrate to Ansible in future iterations)
 # Purpose: Local DNS resolution for training environment
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    api.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    app.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    db.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    cache.dev-test.hana-x.ai
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 192.168.1.100    monitor.dev-test.hana-x.ai
 # End HX-Infrastructure
 "@
 
 ### 4. Verify Implementation
-# Confirm entry exists and resolves
+# Confirm entry exists, then test reachability
 findstr dev-test.hana-x.ai C:\Windows\System32\drivers\etc\hosts
-ping dev-test.hana-x.ai -n 1
-# Should show 192.168.1.100
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
+# Should show 192.168.1.100 (if server responds)
 
 # Test ping (if server responds)
 ping dev-test.hana-x.ai -n 1
@@ -131,6 +166,7 @@ Restart-Service Dnscache
 # cache.dev-test.hana-x.ai    - Caching services (Redis, etc.)
 # monitor.dev-test.hana-x.ai  - Monitoring and metrics
 
+# NOTE: Replace 192.168.1.100 with your actual training environment IP - CHANGE ME
 # IP Address: 192.168.1.100
 # Purpose: Bootstrap/fallback configuration for training environment
 # Management: Manual configuration (will migrate to Ansible)
