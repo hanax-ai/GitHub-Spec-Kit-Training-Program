@@ -116,7 +116,7 @@ Copy and complete this header before making any file edits:
 ### Rollback Procedures
 - **Backup Location:** /etc/hosts.backup (Ubuntu) / hosts.backup (Windows)
 - **Rollback Command:** `sudo cp /etc/hosts.backup /etc/hosts` (Ubuntu) / `Copy-Item hosts.backup C:\Windows\System32\drivers\etc\hosts` (Windows)
-- **Verification:** `nslookup dev-test.hana-x.ai` fails (returns to original state)
+- **Verification:** Use `getent hosts dev-test.hana-x.ai` (Ubuntu) or `ping -n 1 dev-test.hana-x.ai` (Windows). Note: when appending on Windows, use `-Encoding ASCII` to avoid corrupting the hosts file.
 
 ### Dependencies
 - **Prerequisites:** Admin/sudo access to edit hosts file

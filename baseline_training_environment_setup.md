@@ -182,8 +182,8 @@ git config --list | grep -E "(user.name|user.email|init.defaultBranch)"
 # Install Python 3.11 and development tools
 sudo apt install -y python3.11 python3.11-venv python3.11-dev python3-pip
 
-# Create symbolic link for python3.11 as default python3 (if needed)
-sudo update-alternatives --install /usr/bin/python3 python3 /usr/bin/python3.11 1
+# Use Python 3.11 explicitly for virtual environments (do not change system python3)
+# Example: python3.11 -m venv .venv-hx-spec-kit-py311
 ```
 
 **Verify:**
@@ -197,7 +197,7 @@ python3 -m pip --version
 # Should show pip version
 
 # Test virtual environment creation
-python3 -m venv /tmp/test-venv
+python3.11 -m venv /tmp/test-venv
 source /tmp/test-venv/bin/activate
 python --version
 deactivate
@@ -272,7 +272,7 @@ tree --version
 ### Step 1: VS Code Installation
 
 **Do:**
-1. Download VS Code from https://code.visualstudio.com/
+1. Download VS Code from <https://code.visualstudio.com/>
 2. Run installer with default settings
 3. Launch VS Code
 
@@ -288,7 +288,7 @@ code --version
 ### Step 2: Git for Windows Installation
 
 **Do:**
-1. Download Git from https://git-scm.com/download/win
+1. Download Git from <https://git-scm.com/download/win>
 2. Run installer with default settings
 3. Open Git Bash or PowerShell
 
@@ -334,9 +334,10 @@ ssh -V
 # Generate SSH key pair
 ssh-keygen -t ed25519 -C "agent0@hana-x.ai" -f ~/.ssh/id_ed25519_hx_dev
 
-# Start SSH agent and add key
-ssh-agent
-ssh-add ~/.ssh/id_ed25519_hx_dev
+# Start the Windows OpenSSH Agent service and add key
+Start-Service ssh-agent
+Set-Service -Name ssh-agent -StartupType Automatic
+ssh-add $env:USERPROFILE\.ssh\id_ed25519_hx_dev
 ```
 
 **Verify:**
@@ -472,9 +473,9 @@ EOF
 
 **Verify:**
 ```bash
-# Test domain resolution
-nslookup dev-test.hana-x.ai
-# Should resolve to 192.168.1.100
+# Test domain resolution via nsswitch
+getent hosts dev-test.hana-x.ai
+# Should include 192.168.1.100
 
 # Test ping
 ping -c 1 dev-test.hana-x.ai
@@ -519,9 +520,9 @@ Add-Content C:\Windows\System32\drivers\etc\hosts @"
 
 **Verify:**
 ```powershell
-# Test domain resolution
-nslookup dev-test.hana-x.ai
-# Should resolve to 192.168.1.100
+# Test domain resolution via nsswitch
+getent hosts dev-test.hana-x.ai
+# Should include 192.168.1.100
 
 # Test ping
 ping dev-test.hana-x.ai -n 1
@@ -553,7 +554,7 @@ mkdir -p ~/training/hx-spec-kit
 cd ~/training/hx-spec-kit
 
 # Create virtual environment with communicative name
-python3 -m venv .venv-hx-spec-kit-py311
+python3.11 -m venv .venv-hx-spec-kit-py311
 
 # Activate virtual environment
 source .venv-hx-spec-kit-py311/bin/activate
@@ -699,7 +700,7 @@ python test_environment.py
 **Problem:** Virtual environment not activating
 **Solution:**
 1. Check Python 3.11 installation: `python3.11 --version`
-2. Recreate virtual environment: `rm -rf .venv-* && python3 -m venv .venv-hx-spec-kit-py311`
+2. Recreate virtual environment: `rm -rf .venv-* && python3.11 -m venv .venv-hx-spec-kit-py311`
 3. Check permissions: `ls -la .venv-*`
 
 #### Domain Resolution Issues
@@ -791,6 +792,6 @@ See: `Hosts_File_Template.txt` for standardized HX-Infrastructure entries
 
 ---
 
-**End of Guide**
+### End of Guide
 
 *This guide implements a verification-first approach with minimal tech stack focused on Module 1 requirements. All optional components are deferred until specifically needed.*
