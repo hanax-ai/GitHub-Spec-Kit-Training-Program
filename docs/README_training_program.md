@@ -26,7 +26,7 @@ chmod +x validate_environment.sh
 - **DevOps Server:** Linux environment in HX-Infrastructure landscape
 - **Repository Access:** HX-Infrastructure-Knowledge-Base (full owner access)
 - **AI Agent:** VS Code with GitHub Copilot (primary) or Claude Code
-- **Tools:** Python 3.11+, Git, UV package manager
+- **Tools:** Python 3.12+, Git, UV package manager
 
 ## 📚 Training Materials Structure
 
