@@ -37,7 +37,7 @@
 
 ## 📋 Deliverables Created
 
-### 1. **Comprehensive Defect Log** (`DEFECT_LOG.md`)
+### 1. **Comprehensive Defect Log** (`defects/DEFECT_LOG.md`)
 - Unique defect IDs (DEF-001 through DEF-021)
 - Severity classifications
 - Complete resolution notes

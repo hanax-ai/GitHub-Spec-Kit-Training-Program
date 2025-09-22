@@ -54,7 +54,7 @@ cd env && python -m pytest tests/
 
 ### Core Documentation
 - **[Quick Start Guide](QUICK_START.md)** - Get started immediately
-- **[Defect Management](DEFECT_LOG.md)** - Issue tracking and resolution workflow
+- **[Defect Management](docs/defects/DEFECT_LOG.md)** - Issue tracking and resolution workflow
 - **[Integration Plans](docs/IntegrationPlan.md)** - System integration documentation
 
 ### Additional Resources

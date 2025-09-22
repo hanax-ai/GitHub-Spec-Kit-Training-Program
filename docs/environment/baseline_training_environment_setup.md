@@ -725,10 +725,10 @@ python test_environment.py
 See: `ENV_READINESS.md` for verification logging template
 
 ### Artifact Header Template
-See: `Artifact_Header_Template.md` for file edit documentation requirements
+See: `../templates/Artifact_Header_Template.md` for file edit documentation requirements
 
 ### Hosts File Template
-See: `Hosts_File_Template.txt` for standardized HX-Infrastructure entries
+See: `../templates/Hosts_File_Template.txt` for standardized HX-Infrastructure entries
 
 ---
 

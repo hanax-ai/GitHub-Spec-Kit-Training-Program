@@ -152,7 +152,7 @@ This template integrates with the Do → Verify → Log pattern:
 1. **Before Do:** Complete this template
 2. **During Do:** Follow the documented change plan
 3. **During Verify:** Use the acceptance criteria
-4. **During Log:** Reference this documentation in ENV_READINESS.md
+4. **During Log:** Reference this documentation in ../environment/ENV_READINESS.md
 
 ### File Naming Convention
 
