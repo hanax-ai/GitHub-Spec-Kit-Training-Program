@@ -722,13 +722,13 @@ python test_environment.py
 ## Supporting Templates
 
 ### ENV_READINESS.md Template
-See: `ENV_READINESS.md` for verification logging template
+See: [ENV_READINESS.md](ENV_READINESS.md) for verification logging template
 
 ### Artifact Header Template
-See: `Artifact_Header_Template.md` for file edit documentation requirements
+See: [Artifact Header Template](../templates/Artifact_Header_Template.md) for file edit documentation requirements
 
 ### Hosts File Template
-See: `Hosts_File_Template.txt` for standardized HX-Infrastructure entries
+See: [Hosts File Template](../templates/Hosts_File_Template.txt) for standardized HX-Infrastructure entries
 
 ---
 
