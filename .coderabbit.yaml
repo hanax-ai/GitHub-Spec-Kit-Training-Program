@@ -23,6 +23,11 @@ reviews:
       - "fix/*"
       - "hotfix/*"
       - "release/*"
+      # Training environment workflow patterns
+      - "revise-*"
+      - "training/*"
+      - "chore/*"
+      - "docs/*"
   
   # Review scope
   scope:
