@@ -1,159 +1,118 @@
+
 # GitHub Spec Kit Training Program
 
-![GitHub Spec Kit Training](https://img.shields.io/badge/Training-GitHub%20Spec%20Kit-blue)
-![Status](https://img.shields.io/badge/Status-Ready%20for%20Execution-green)
-![Duration](https://img.shields.io/badge/Duration-5--7%20Days-orange)
+[![Training Program](https://i.ytimg.com/vi/GlqQGLz6hfs/hqdefault.jpg)
+[![Status](https://i.ytimg.com/vi/4cgpu9L2AE8/maxresdefault.jpg)
+[![License](https://img.shields.io/badge/License-MIT-yellow)](LICENSE)
 
-## 🎯 Overview
-
-This is a comprehensive 5-7 day intensive GitHub Spec Kit training program designed to transform your GitHub workflow capabilities from foundation to mastery. The program is structured progressively and ready for immediate execution.
+A comprehensive 5-7 day intensive GitHub Spec Kit training program designed to transform your GitHub workflow and project management capabilities. This program provides hands-on experience with advanced GitHub features, best practices, and professional development workflows.
 
 ## 🚀 Quick Start
 
-**Ready to begin? Start here:**
+**New to the program?** Start here: [QUICK_START.md](QUICK_START.md)
 
-1. **[📖 Quick Start Guide](QUICK_START.md)** - Get up and running in minutes
-2. **[🏗️ Environment Setup](environment_setup/)** - Configure your development environment
-3. **[📚 Day 1 Foundation](curriculum/day1_foundation.md)** - Begin your training journey
+**Ready to begin training?** Jump to: [Day 1 Foundation](training/curriculum/day1_foundation.md)
 
-## 📋 Program Structure
+## 📚 Program Structure
 
-### 📚 Curriculum (Progressive Learning Path)
-- **[Day 1: Foundation](curriculum/day1_foundation.md)** - GitHub basics and core concepts
-- **[Day 2: Intermediate](curriculum/day2_intermediate.md)** - Advanced workflows and collaboration
-- **[Day 3: Advanced](curriculum/day3_advanced.md)** - Complex project management and automation
-- **[Day 4: Complex Projects](curriculum/day4_complex_projects.md)** - Enterprise-level implementations
-- **[Day 5: Mastery](curriculum/day5_mastery.md)** - Expert techniques and optimization
+### Training Modules
+- **[Day 1: Foundation](training/curriculum/day1_foundation.md)** - GitHub basics, repositories, and core concepts
+- **[Day 2: Intermediate](training/curriculum/day2_intermediate.md)** - Branching, merging, and collaboration workflows
+- **[Day 3: Advanced](training/curriculum/day3_advanced.md)** - Advanced Git operations and GitHub features
+- **[Day 4: Complex Projects](training/curriculum/day4_complex_projects.md)** - Project management and enterprise workflows
+- **[Day 5: Mastery](training/curriculum/day5_mastery.md)** - Automation, CI/CD, and advanced integrations
 
-### 🎯 Practical Components
-- **[💪 Exercises](exercises/)** - Hands-on practice and validation checkpoints
-- **[🏗️ Environment Setup](environment_setup/)** - Complete development environment configuration
-- **[🎓 Teaching Materials](teaching_materials/)** - Instructor guides and supplementary resources
-- **[📦 Archive Integration](archive_integration/)** - Knowledge base integration strategies
+### Hands-On Learning
+- **[Exercises](training/exercises/)** - Progressive exercises for each training day
+- **[Templates](training/templates/)** - Professional templates for specifications and documentation
+- **[Metrics](training/metrics/)** - Track your progress and outcomes
 
-## 🛠️ Environment Validation
-
-Run the automated environment validation script:
-
-```bash
-./validate_environment.sh
-```
-
-This script verifies:
-- Git configuration and authentication
-- GitHub CLI setup
-- Development tools installation
-- Repository access permissions
-- Workflow automation readiness
-
-## 📖 Documentation Formats
-
-All training materials are available in multiple formats:
-- **Markdown (.md)** - Interactive, web-friendly format
-- **PDF (.pdf)** - Offline access and printing
-
-## 🎯 Learning Objectives
-
-By completing this program, you will master:
-
-### Foundation Skills
-- Git fundamentals and GitHub interface navigation
-- Repository management and collaboration workflows
-- Branch strategies and merge conflict resolution
-- Issue tracking and project management
-
-### Advanced Capabilities
-- GitHub Actions and automation workflows
-- Advanced security and access management
-- Enterprise-level project organization
-- Integration with external tools and services
-
-### Expert Techniques
-- Custom workflow optimization
-- Advanced troubleshooting and debugging
-- Performance optimization strategies
-- Best practices for large-scale projects
-
-## 🚦 Getting Started
+## 🛠️ Environment Setup
 
 ### Prerequisites
+- Git installed on your system
 - GitHub account with appropriate permissions
-- Git installed and configured
-- Basic command line familiarity
-- Development environment (see [Environment Setup](environment_setup/))
+- Code editor (VS Code recommended)
 
-### Authentication Setup
-This repository uses secure authentication with:
-- **HX_SPEC_KIT_SECRET** - Primary authentication token
-- **HX_SPEC_KIT_VAR** - Token reference variable
+### Quick Setup
+```bash
+# Clone the repository
+git clone https://github.com/hanax-ai/GitHub-Spec-Kit-Training-Program.git
+cd GitHub-Spec-Kit-Training-Program
 
-### Execution Path
-1. **Environment Validation** - Run `./validate_environment.sh`
-2. **Quick Start** - Follow [QUICK_START.md](QUICK_START.md)
-3. **Progressive Learning** - Complete curriculum Day 1-5
-4. **Practical Application** - Work through exercises and checkpoints
-5. **Mastery Validation** - Complete final assessments
+# Run environment validation
+./scripts/validate_environment.sh
+
+# Install testing dependencies
+pip install -r env/requirements-test.txt
+
+# Run tests to verify setup
+cd env && python -m pytest tests/
+```
+
+## 📖 Documentation
+
+### Core Documentation
+- **[Quick Start Guide](QUICK_START.md)** - Get started immediately
+- **[Defect Management](DEFECT_LOG.md)** - Issue tracking and resolution workflow
+- **[Integration Plans](docs/IntegrationPlan.md)** - System integration documentation
+
+### Additional Resources
+- **[Scripts](scripts/)** - Utility scripts for automation and maintenance
+- **[Environment](env/)** - Testing framework and validation tools
+- **[Archive](docs/archive_integration/)** - Historical integration materials
+
+## 🎯 Learning Outcomes
+
+By completing this program, you will:
+
+- ✅ Master GitHub's core features and advanced capabilities
+- ✅ Implement professional development workflows
+- ✅ Create and manage complex project structures
+- ✅ Automate workflows with GitHub Actions
+- ✅ Apply enterprise-level best practices
+- ✅ Integrate GitHub with external tools and systems
 
 ## 📊 Progress Tracking
 
-The program includes automated progress tracking through:
-- Validation checkpoints after each day
-- Practical exercise completion markers
-- Automated testing and verification
-- Performance metrics and feedback
+Monitor your learning progress with our comprehensive metrics system:
+- **[Training Outcomes](training/metrics/training-outcomes.md)** - Detailed progress tracking
+- **[Outcome Templates](training/metrics/outcome-tracking-templates.yaml)** - Structured assessment tools
 
-## 🎓 Instructor Resources
+## 🤝 Contributing
 
-For instructors and training facilitators:
-- **[Instructor Guide](teaching_materials/instructor_guide.md)** - Complete teaching framework
-- **[Teaching Materials](teaching_materials/)** - Supplementary resources and tools
-- **[Validation Checkpoints](exercises/validation_checkpoints.md)** - Assessment criteria and rubrics
+We welcome contributions to improve the training program:
 
-## 🔧 Automation & Workflows
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Make your changes
+4. Run tests (`cd env && python -m pytest`)
+5. Submit a pull request
 
-This repository includes automated workflows for:
-- Environment validation and setup verification
-- Training progress tracking and reporting
-- Documentation updates and maintenance
-- Continuous integration and testing
+Please see our [Pull Request Template](.github/PULL_REQUEST_TEMPLATE.md) for detailed guidelines.
 
-All workflows are configured with proper authentication using `HX_SPEC_KIT_SECRET` and `HX_SPEC_KIT_VAR`.
+## 📝 Issue Reporting
 
-## 📞 Support & Resources
+Found a bug or have a suggestion? Please use our issue templates:
+- [Bug Report](.github/ISSUE_TEMPLATE/bug_report.md)
+- [Feature Request](.github/ISSUE_TEMPLATE/feature_request.md)
+- [Training Question](.github/ISSUE_TEMPLATE/training_question.md)
 
-### Quick Navigation
-- **[📖 Quick Start](QUICK_START.md)** - Immediate execution guide
-- **[🏗️ Environment Setup](environment_setup/)** - Technical configuration
-- **[📚 Curriculum](curriculum/)** - Complete learning path
-- **[💪 Exercises](exercises/)** - Practical applications
-- **[🎓 Teaching Materials](teaching_materials/)** - Instructor resources
+## 📄 License
 
-### Additional Resources
-- **[Archive Integration](archive_integration/)** - Knowledge base integration
-- **[HX Infrastructure Knowledge Base](HX-Infrastructure-Knowledge-Base/)** - Extended resources
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🎯 Success Metrics
+## 🔗 Quick Navigation
 
-Program completion includes:
-- ✅ All 5 curriculum days completed
-- ✅ Validation checkpoints passed
-- ✅ Practical exercises completed
-- ✅ Environment fully configured
-- ✅ Automation workflows functional
-
-## 🚀 Ready to Begin?
-
-**Start your GitHub Spec Kit mastery journey now:**
-
-1. **[📖 Read Quick Start Guide](QUICK_START.md)**
-2. **[🏗️ Set Up Environment](environment_setup/)**
-3. **[📚 Begin Day 1 Training](curriculum/day1_foundation.md)**
+| Section | Description | Link |
+|---------|-------------|------|
+| **Start Training** | Begin your GitHub journey | [Day 1 Foundation](training/curriculum/day1_foundation.md) |
+| **Exercises** | Hands-on practice | [Training Exercises](training/exercises/) |
+| **Templates** | Professional templates | [Spec Templates](training/templates/) |
+| **Scripts** | Automation tools | [Utility Scripts](scripts/) |
+| **Testing** | Validation framework | [Test Environment](env/) |
+| **Documentation** | Additional resources | [Docs Directory](docs/) |
 
 ---
 
-**Training Program Status:** ✅ Ready for Immediate Execution  
-**Last Updated:** September 2025  
-**Program Version:** 1.0  
-**Estimated Completion:** 5-7 Days Intensive Training
-
-*This comprehensive training program is designed to transform your GitHub capabilities from foundation to expert level. All materials are ready for immediate execution with progressive learning paths and practical applications.*
+**Ready to transform your GitHub skills?** [Start with Day 1 Foundation](training/curriculum/day1_foundation.md) 🚀
