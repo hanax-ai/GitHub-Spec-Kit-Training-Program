@@ -1,0 +1,116 @@
+
+# CodeRabbit Configuration for GitHub Spec Kit Training Program
+# This configuration enables mandatory CodeRabbit reviews on all branches
+
+# Review settings
+reviews:
+  # Enable mandatory reviews on all branches
+  review_status: true
+  # Enable auto reviews on all branches
+  auto_review:
+    enabled: true
+    # Include all branches - using proper regex patterns
+    base_branches:
+      - "main"
+      - "deploy-training"
+      - "hx-integration"
+      - "nitpick-remediation"
+      - "repository-restructure"
+      - "cr-pr3-nitpick-fixes"
+      - "pr3-followup-fixes"
+      # Pattern for feature branches
+      - "feature/*"
+      - "fix/*"
+      - "hotfix/*"
+      - "release/*"
+  
+  # Review scope
+  scope:
+    # Review all file types
+    include_patterns:
+      - "**/*.md"
+      - "**/*.py"
+      - "**/*.sh"
+      - "**/*.yaml"
+      - "**/*.yml"
+      - "**/*.json"
+      - "**/*.txt"
+    
+    # Exclude certain paths if needed
+    exclude_patterns:
+      - "node_modules/**"
+      - ".git/**"
+      - "*.log"
+      - "**/__pycache__/**"
+
+# Language settings
+language: "en-US"
+
+# Review quality settings - all mandatory
+early_access: false
+high_level_summary: true
+poem: true
+review_status: true
+
+# Mandatory review enforcement
+chat:
+  auto_reply: true
+
+# Path-based settings with mandatory review requirements
+path_instructions:
+  - path: "**/*.py"
+    instructions: |
+      - MANDATORY: Focus on code quality, security, and best practices
+      - REQUIRED: Check for proper error handling and edge cases
+      - MANDATORY: Verify unit test coverage and test quality
+      - REQUIRED: Ensure proper documentation and comments
+      - All Python code changes require comprehensive review
+  
+  - path: "**/*.md"
+    instructions: |
+      - MANDATORY: Check for proper markdown formatting
+      - REQUIRED: Verify table formatting and blank lines
+      - MANDATORY: Ensure proper heading hierarchy
+      - REQUIRED: Check for broken links and references
+      - All documentation changes require thorough review
+  
+  - path: "**/*.yaml"
+    instructions: |
+      - MANDATORY: Validate YAML syntax and structure
+      - REQUIRED: Check for proper indentation
+      - MANDATORY: Verify configuration completeness
+      - All configuration changes require careful review
+  
+  - path: "tests/**"
+    instructions: |
+      - MANDATORY: Ensure comprehensive test coverage
+      - REQUIRED: Verify test isolation and independence
+      - MANDATORY: Check for proper mocking and fixtures
+      - REQUIRED: Validate test documentation and clarity
+      - All test changes require rigorous review
+
+# Custom instructions - MANDATORY REVIEW POLICY
+instructions: |
+  This is a GitHub Spec Kit Training Program repository with MANDATORY REVIEW REQUIREMENTS.
+  
+  🚨 CRITICAL: ALL CHANGES REQUIRE COMPREHENSIVE REVIEW - NO EXCEPTIONS
+  
+  Review Focus Areas:
+  
+  1. **Code Quality**: MANDATORY review of all Python scripts for best practices
+  2. **Documentation**: REQUIRED review of markdown formatting and content accuracy
+  3. **Testing**: MANDATORY validation of comprehensive unit test coverage
+  4. **Security**: REQUIRED security review for all script changes
+  5. **Maintainability**: MANDATORY review for code documentation and maintainability
+  6. **Training Content**: REQUIRED verification of training material accuracy
+  
+  MANDATORY Review Requirements:
+  - Defect tracking and resolution processes must be reviewed
+  - Training curriculum accuracy requires comprehensive review
+  - Integration with HX-Infrastructure Knowledge Base needs validation
+  - Unit test quality and coverage requires thorough examination
+  - Documentation consistency must be verified
+  
+  🔒 ENFORCEMENT: No changes may be merged without complete CodeRabbit review approval.
+  All pull requests must receive comprehensive review before merge authorization.
+

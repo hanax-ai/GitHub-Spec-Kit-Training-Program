@@ -63,7 +63,7 @@
 | Component | Status | Timestamp | Verification Command | Result | Notes |
 |-----------|--------|-----------|---------------------|---------|-------|
 | Ubuntu Hosts File | ⏳ PENDING | | `getent hosts dev-test.hana-x.ai && ping -c 1 dev-test.hana-x.ai` | | |
-| Windows Hosts File | ⏳ PENDING | | `findstr dev-test.hana-x.ai C:\Windows\System32\drivers\etc\hosts && ping -n 1 dev-test.hana-x.ai` | | |
+| Windows Hosts File | ⏳ PENDING | | `findstr dev-test.hana-x.ai C:\Windows\System32\drivers\etc\hosts && Resolve-DnsName dev-test.hana-x.ai` | | |
 
 ### Virtual Environment Setup
 

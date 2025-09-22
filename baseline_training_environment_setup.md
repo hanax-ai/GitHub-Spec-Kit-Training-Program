@@ -136,7 +136,7 @@ ping <ubuntu-server-ip>
 sudo apt update && sudo apt upgrade -y
 
 # Install CA certificates for TLS trust
-sudo apt install -y ca-certificates apt-transport-https
+sudo apt install -y ca-certificates
 ```
 
 **Verify:**
@@ -189,7 +189,7 @@ sudo apt install -y python3.11 python3.11-venv python3.11-dev python3-pip
 **Verify:**
 ```bash
 # Check Python version
-python3 --version
+python3.11 --version
 # Should show: Python 3.11.x
 
 # Check pip installation
@@ -229,7 +229,7 @@ sudo systemctl status ssh | grep "Active:"
 # Should show: Active: active (running)
 
 # Check SSH port listening
-sudo netstat -tlnp | grep :22
+sudo ss -tlnp | grep :22
 # Should show SSH listening on port 22
 
 # Verify .ssh directory permissions
@@ -315,8 +315,10 @@ ssh -V
 
 **Verify:**
 ```
+```text
 # In VS Code:
 1. Press Ctrl+Shift+P
+```
 2. Type "Remote-SSH"
 3. Should see Remote-SSH commands available
 ```
@@ -416,6 +418,7 @@ ssh hx-dev-server "echo 'SSH connection successful'"
 
 **Verify:**
 1. Press Ctrl+Shift+P
+```
 2. Type "Remote-SSH: Connect to Host"
 3. Select "hx-dev-server"
 4. Should connect successfully and show Ubuntu environment
@@ -431,7 +434,7 @@ ssh hx-dev-server "echo 'SSH connection successful'"
 
 **Verify:**
 1. Open terminal in VS Code (connected to remote)
-2. Run: `python3 --version`
+2. Run: `python3.11 --version`
 3. Run: `git --version`
 4. Both should work without errors
 
@@ -473,13 +476,13 @@ EOF
 
 **Verify:**
 ```bash
-# Test domain resolution via nsswitch
-getent hosts dev-test.hana-x.ai
-# Should include 192.168.1.100
+# Confirm entry exists and resolves
+findstr dev-test.hana-x.ai C:\Windows\System32\drivers\etc\hosts
+# Resolve-DnsName dev-test.hana-x.ai
 
-# Test ping
+# Optional: ping (only if ICMP allowed)
 ping -c 1 dev-test.hana-x.ai
-# Should ping successfully (if server responds to ping)
+# ping dev-test.hana-x.ai -n 1
 
 # Verify hosts file format
 grep -A 10 "HX-Infrastructure" /etc/hosts
@@ -505,7 +508,7 @@ grep -A 10 "HX-Infrastructure" /etc/hosts
 Copy-Item C:\Windows\System32\drivers\etc\hosts C:\Windows\System32\drivers\etc\hosts.backup
 
 # Add HX-Infrastructure entries
-Add-Content C:\Windows\System32\drivers\etc\hosts @"
+Add-Content -Encoding ASCII C:\Windows\System32\drivers\etc\hosts @"
 
 # HX-Infrastructure - Training Environment
 # Version: 1.0 - Bootstrap/Fallback Configuration
@@ -520,13 +523,13 @@ Add-Content C:\Windows\System32\drivers\etc\hosts @"
 
 **Verify:**
 ```powershell
-# Test domain resolution via nsswitch
-getent hosts dev-test.hana-x.ai
-# Should include 192.168.1.100
+# Confirm entry exists and resolves
+findstr dev-test.hana-x.ai C:\Windows\System32\drivers\etc\hosts
+# Resolve-DnsName dev-test.hana-x.ai
 
-# Test ping
+# Optional: ping (only if ICMP allowed)
 ping dev-test.hana-x.ai -n 1
-# Should ping successfully (if server responds to ping)
+# ping dev-test.hana-x.ai -n 1
 ```
 
 **Log:** Record Windows hosts file configuration in ENV_READINESS.md
@@ -700,7 +703,7 @@ python test_environment.py
 **Problem:** Virtual environment not activating
 **Solution:**
 1. Check Python 3.11 installation: `python3.11 --version`
-2. Recreate virtual environment: `rm -rf .venv-* && python3.11 -m venv .venv-hx-spec-kit-py311`
+2. Recreate virtual environment: `rm -rf .venv-hx-spec-kit-py311 && python3.11 -m venv .venv-hx-spec-kit-py311`
 3. Check permissions: `ls -la .venv-*`
 
 #### Domain Resolution Issues
