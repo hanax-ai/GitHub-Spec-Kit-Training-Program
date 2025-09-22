@@ -1,4 +1,5 @@
 
+
 # Defect Management Workflow
 
 This document outlines the comprehensive defect management workflow for the GitHub Spec Kit Training Program.
@@ -36,8 +37,8 @@ Our defect management system ensures systematic tracking, resolution, and preven
 
 ### 2. Logging
 - All defects are logged in [DEFECT_LOG.md](DEFECT_LOG.md)
-- Each defect receives a unique identifier
-- Severity and priority are assigned
+- Each defect receives a unique identifier using format: **DEF-YYYY-####** (e.g., DEF-2025-0001)
+- Severity and priority are assigned using standardized GitHub labels
 - Initial assessment and categorization
 
 ### 3. Assignment
@@ -49,40 +50,56 @@ Our defect management system ensures systematic tracking, resolution, and preven
 ### 4. Resolution
 - Root cause analysis performed
 - Fix implemented and tested
-- Solution documented
-- Verification of fix effectiveness
+- Documentation updated as needed
+- Resolution verified by reporter when possible
 
 ### 5. Closure
-- Defect marked as resolved
-- Solution validated by stakeholders
-- Documentation updated if necessary
-- Lessons learned captured
+- Defect marked as resolved in tracking system
+- Lessons learned documented
+- Process improvements identified
 
 ## Severity Levels
 
-### Critical (P1)
+### Critical P1
 - Training program cannot proceed
 - Major functionality broken
 - Security vulnerabilities
-- **Response Time**: Immediate (within 2 hours)
+- **Response Time**: Immediate within 2 hours (24/7 coverage)
+- **First Responder**: On-call engineer or repository maintainer
+- **Escalation**: Immediate notification to project lead
 
-### High (P2)
+### High P2
 - Significant impact on training effectiveness
 - Important features not working
 - Workaround available but difficult
-- **Response Time**: Same day (within 8 hours)
+- **Response Time**: Same day within 8 hours (business hours: 9 AM - 6 PM EST)
+- **First Responder**: Assigned team lead
+- **Escalation**: Project lead notification within 4 hours if unresolved
 
-### Medium (P3)
+### Medium P3
 - Moderate impact on user experience
 - Minor functionality issues
 - Easy workaround available
 - **Response Time**: Within 2 business days
+- **First Responder**: Team member with relevant expertise
+- **Escalation**: Weekly review if unresolved
 
-### Low (P4)
+### Low P4
 - Cosmetic issues
 - Enhancement requests
 - Documentation improvements
 - **Response Time**: Within 1 week
+- **First Responder**: Any available team member
+- **Escalation**: Monthly review for prioritization
+
+## GitHub Labels Mapping
+
+Our severity levels map to the following GitHub labels for consistent tracking:
+
+- **P1 Critical** → `priority: critical`, `severity: high`
+- **P2 High** → `priority: high`, `severity: medium`
+- **P3 Medium** → `priority: medium`, `severity: low`
+- **P4 Low** → `priority: low`, `enhancement`
 
 ## Tools and Scripts
 
@@ -104,6 +121,7 @@ Our defect management system ensures systematic tracking, resolution, and preven
    - [Training Question](.github/ISSUE_TEMPLATE/training_question.md)
 3. Provide detailed reproduction steps
 4. Include environment information
+5. For security vulnerabilities, see [SECURITY.md](.github/SECURITY.md)
 
 ### For Contributors
 1. Follow the pull request template
@@ -114,32 +132,30 @@ Our defect management system ensures systematic tracking, resolution, and preven
 ## Metrics and Monitoring
 
 ### Key Performance Indicators
-- **Mean Time to Resolution (MTTR)** by severity level
-- **Defect Escape Rate** - issues found in production
-- **Customer Satisfaction** - user feedback on resolutions
-- **Defect Density** - defects per training module
 
-### Regular Reviews
-- **Weekly**: Review open defects and priorities
-- **Monthly**: Analyze trends and patterns
-- **Quarterly**: Process improvement assessment
+**Mean Time to Resolution (MTTR)** by severity level:
+- **Owner**: Engineering Manager
+- **Review Cadence**: Weekly for P1/P2, Monthly for P3/P4
 
-## Prevention Strategies
+**Defect Escape Rate** - issues found in production:
+- **Owner**: Quality Assurance Lead
+- **Review Cadence**: Monthly assessment
 
-### Code Quality
-- Comprehensive code reviews
-- Automated testing at multiple levels
-- Static code analysis
-- Documentation reviews
+**Customer Satisfaction** - user feedback on resolutions:
+- **Owner**: Product Manager
+- **Review Cadence**: Quarterly survey and analysis
 
-### Training Quality
-- Regular content reviews and updates
-- User feedback integration
-- Expert validation of technical content
-- Continuous improvement based on metrics
+**Defect Density** - defects per training module:
+- **Owner**: Content Team Lead
+- **Review Cadence**: After each major content update
+
+### Reporting Schedule
+- **Weekly Reviews**: P1/P2 defects, MTTR analysis
+- **Monthly Reviews**: All severity levels, escape rate assessment
+- **Quarterly Reviews**: Customer satisfaction, process improvements
 
 ### Process Improvement
-- Regular retrospectives
+- Regular retrospectives led by Project Manager
 - Root cause analysis for critical defects
 - Process refinement based on lessons learned
 - Tool and automation improvements
@@ -150,12 +166,12 @@ For defect-related questions or escalations:
 - Create an issue using our templates
 - Tag appropriate team members
 - For critical issues, contact repository maintainers directly
+- For security vulnerabilities, follow [SECURITY.md](.github/SECURITY.md) procedures
 
 ## Related Documentation
 - [DEFECT_LOG.md](DEFECT_LOG.md) - Current defect tracking
 - [Training Outcomes](training/metrics/training-outcomes.md) - Quality metrics
 - [Integration Plans](docs/IntegrationPlan.md) - System integration details
+- [Security Policy](.github/SECURITY.md) - Vulnerability reporting procedures
 
 ---
-
-This defect management workflow ensures high-quality training delivery and continuous improvement of the GitHub Spec Kit Training Program.

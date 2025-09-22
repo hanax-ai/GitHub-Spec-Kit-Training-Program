@@ -1,3 +1,4 @@
+
 # CodeRabbit PR #1 Review Defect Log
 
 | Defect ID | PR # | Actionable Comment / Description | Severity | Owner | Status | Resolution Notes | Date Opened | Date Closed |
@@ -13,7 +14,7 @@
 | DEF-009 | 1 | curriculum/day2_intermediate.md (Line 86-127): **Add blank lines around tables (MD058).** | Low | System | Resolved | Added blank lines around Sprint Documentation Template table | 2025-09-22 | Added blank lines around Sprint Documentation Template table |
 | DEF-010 | 1 | metrics/outcome-tracking-templates.yaml (Line 1-4): **Remove leading blank line to satisfy yamllint.** | Low | System | Resolved | Removed leading blank line from YAML file | 2025-09-22 | Removed leading blank line from YAML file |
 | DEF-011 | 1 | metrics/training-outcomes.md (Line 11-18): **Add blank lines around table (MD058).** | Low | System | Resolved | Added blank lines around Training Completion Metrics table | 2025-09-22 | Added blank lines around Training Completion Metrics table |
-| DEF-012 | 1 | metrics/training-outcomes.md (Line 19-26): Add blank lines around table (MD058). | Low | System | Resolved | Added blank lines around Project Outcome Metrics table | 2025-09-22 | Added blank lines around Project Outcome Metrics table |
+| DEF-012 | 1 | metrics/training-outcomes.md (Line 19-26): Add blank lines around table (MD058). | Low | System | Resolved | Added blank lines around table around Project Outcome Metrics table | 2025-09-22 | Added blank lines around Project Outcome Metrics table |
 | DEF-013 | 1 | metrics/training-outcomes.md (Line 27-34): Add blank lines around table (MD058). | Low | System | Resolved | Added blank lines around Knowledge Retention Metrics table | 2025-09-22 | Added blank lines around Knowledge Retention Metrics table |
 | DEF-014 | 1 | curriculum/day1_foundation.md (Line 85-106): Convert bold "Phase" lines to proper headings (MD036). | Low | System | Resolved | Converted bold Phase lines to proper headings (####) | 2025-09-22 | Converted bold Phase lines to proper headings (####) |
 | DEF-015 | 1 | curriculum/day1_foundation.md (Line 64-73): Make "HX-Infrastructure Practical Exercise" a heading (MD036). | Low | System | Resolved | Created missing referenced files: docs/sdd-guide.md, templates/*.md | 2025-09-22 | Created missing referenced files: docs/sdd-guide.md, templates/*.md |
@@ -23,3 +24,19 @@
 | DEF-019 | 1 | curriculum/day2_intermediate.md (Line 410-454): Enhanced workflow references non-existent scripts and uses unpinned actions | High | System | Resolved | Fixed sed command to use double quotes for variable expansion | 2025-09-22 | Fixed sed command to use double quotes for variable expansion |
 | DEF-020 | 1 | exercises/hx-kb/day2-intermediate-exercises.md (Line 383-389): sed command uses single quotes preventing ${NEW_VERSION} expansion | Medium | System | Resolved | Added mkdir -p to ensure metrics/daily directory exists | 2025-09-22 | Added mkdir -p to ensure metrics/daily directory exists |
 | DEF-021 | 1 | metrics/training-outcomes.md (Line 158-191): Script writes to metrics/daily without ensuring directory exists | Medium | System | Resolved | Converted HX-Infrastructure Practical Exercise to proper heading | 2025-09-22 | Converted HX-Infrastructure Practical Exercise to proper heading |
+
+# CodeRabbit PR #3 Review Defect Log
+
+| Defect ID | PR # | Actionable Comment / Description | Severity | Owner | Status | Resolution Notes | Date Opened | Date Closed |
+|-----------|------|----------------------------------|----------|-------|--------|------------------|-------------|-------------|
+| DEF-2025-0022 | 3 | .github/PULL_REQUEST_TEMPLATE.md (2-41): Strengthen PR template with risk, linkage, and rollout details | Medium | System | Evaluation | Add sections for linked issues, risk/impact assessment, rollout/backout plan, release notes. Wrap guidance in HTML comments. | 2025-09-22 | |
+| DEF-2025-0023 | 3 | .github/PULL_REQUEST_TEMPLATE.md (2-41): Consider Issue Forms for PRs | Low | System | Evaluation | GitHub PR forms can enforce required fields (risk, linked issues). Consider YAML form migration for field enforcement. | 2025-09-22 | |
+| DEF-2025-0024 | 3 | .github/ISSUE_TEMPLATE/feature_request.md (2-21): Capture acceptance criteria and impact; consider Issue Forms | Medium | System | Evaluation | Add acceptance criteria, success metrics, impact/risk assessment to set clear scope. Consider Issue Forms migration. | 2025-09-22 | |
+| DEF-2025-0025 | 3 | .github/ISSUE_TEMPLATE/feature_request.md (2-21): Optional: Convert to GitHub Issue Form | Low | System | Evaluation | YAML-based issue forms provide required fields and dropdowns for better data collection. | 2025-09-22 | |
+| DEF-2025-0026 | 3 | .github/ISSUE_TEMPLATE/training_question.md (2-27): Add source links and screenshots to speed triage | Medium | System | Evaluation | Include fields for direct link/path to training material, version/commit, optional screenshot/snippet to reduce round-trips. | 2025-09-22 | |
+| DEF-2025-0027 | 3 | .github/ISSUE_TEMPLATE/training_question.md (2-27): Optional: Use Issue Forms to require module selection and source link | Low | System | Evaluation | Issue Forms can enforce required checkboxes and URL fields for better data quality. | 2025-09-22 | |
+| DEF-2025-0028 | 3 | .github/ISSUE_TEMPLATE/bug_report.md (2-33): Add severity, reproducibility, logs, and regression info | High | System | Evaluation | Add comprehensive environment section, severity/priority classification, reproducibility assessment, logs/traces, workaround section. | 2025-09-22 | |
+| DEF-2025-0029 | 3 | .github/ISSUE_TEMPLATE/bug_report.md (2-33): Optional: Migrate to Issue Forms for required fields | Low | System | Evaluation | Issue Forms enforce severity and environment as required fields, improving data quality for triage and SLA adherence. | 2025-09-22 | |
+| DEF-2025-0030 | 3 | DEFECT_MANAGEMENT.md (61-86): Clarify SLA scope and time zone | High | System | Evaluation | Define whether response times are business hours or 24/7, specify time zone, identify on-call/first-responder for P1/P2 issues. | 2025-09-22 | |
+| DEF-2025-0031 | 3 | DEFECT_MANAGEMENT.md (37-42): Tighten logging process: ID format and label mapping | Medium | System | Evaluation | Specify canonical defect ID format (DEF-YYYY-####) and map severity levels to GitHub labels for consistency. | 2025-09-22 | |
+| DEF-2025-0032 | 3 | DEFECT_MANAGEMENT.md (114-146): Add metrics ownership and review cadence | Medium | System | Evaluation | Name owner for each KPI and establish weekly/monthly/quarterly review schedules to avoid orphaned processes. | 2025-09-22 | |

@@ -1,4 +1,5 @@
 
+
 ---
 name: Bug Report
 about: Create a report to help us improve
@@ -20,13 +21,32 @@ Steps to reproduce the behavior:
 **Expected behavior**
 A clear and concise description of what you expected to happen.
 
+**Actual Result vs Expected**
+- Actual:
+- Expected:
+
 **Screenshots**
 If applicable, add screenshots to help explain your problem.
 
-**Environment (please complete the following information):**
-- OS: [e.g. iOS]
-- Browser [e.g. chrome, safari]
-- Version [e.g. 22]
+**Environment**
+- OS and version:
+- Runtime/tooling (e.g. Python/Node/Java + versions):
+- Browser (if UI) and version:
+- App revision/commit SHA or release tag:
+
+**Severity and Priority**
+- Severity (P1-P4):
+- Priority (High/Med/Low):
+
+**Reproducibility**
+- Always / Often / Intermittent / Unable to reproduce
+- Is this a regression? If yes, from which version?
+
+**Logs / Stack Traces**
+<!-- Paste minimal relevant logs with sensitive data removed -->
+
+**Workaround**
+If any known workaround exists, describe it.
 
 **Additional context**
 Add any other context about the problem here.

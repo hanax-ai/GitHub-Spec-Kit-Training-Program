@@ -1,4 +1,5 @@
 
+
 ---
 name: Training Question
 about: Ask a question about the GitHub Spec Kit Training Program
@@ -24,3 +25,10 @@ Please provide any relevant context or what you've already tried.
 
 **Expected Outcome**
 What are you trying to achieve or understand?
+
+**Source Link / Location**
+- File path or URL to the specific training page/material:
+- Commit / Version (if applicable):
+
+**Screenshots / Snippets (optional)**
+<!-- Paste or drag here -->
