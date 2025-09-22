@@ -1,0 +1,14 @@
+
+# Test requirements for GitHub Spec Kit Training Program
+# Core testing framework (built into Python)
+# unittest - included with Python standard library
+
+# Optional testing enhancements (if needed)
+# pytest>=7.0.0
+# pytest-cov>=4.0.0
+# mock>=4.0.0
+
+# Development dependencies
+# flake8>=5.0.0
+# black>=22.0.0
+# mypy>=0.991

@@ -1,0 +1,91 @@
+# CodeRabbit Configuration for GitHub Spec Kit Training Program
+# This configuration enables CodeRabbit reviews on all branches
+
+# Review settings
+reviews:
+  # Enable reviews on all branches, not just default
+  review_status: true
+  # Enable auto reviews on all branches
+  auto_review:
+    enabled: true
+    # Include non-default branches
+    base_branches:
+      - "main"
+      - "deploy-training"
+      - "hx-integration"
+      - "nitpick-remediation"
+      - "*"  # Enable for all branches
+  
+  # Review scope
+  scope:
+    # Review all file types
+    include_patterns:
+      - "**/*.md"
+      - "**/*.py"
+      - "**/*.sh"
+      - "**/*.yaml"
+      - "**/*.yml"
+      - "**/*.json"
+      - "**/*.txt"
+    
+    # Exclude certain paths if needed
+    exclude_patterns:
+      - "node_modules/**"
+      - ".git/**"
+      - "*.log"
+
+# Language settings
+language: "en-US"
+
+# Review quality settings
+early_access: false
+high_level_summary: true
+poem: true
+review_status: true
+
+# Path-based settings
+path_instructions:
+  - path: "**/*.py"
+    instructions: |
+      - Focus on code quality, security, and best practices
+      - Check for proper error handling and edge cases
+      - Verify unit test coverage and test quality
+      - Ensure proper documentation and comments
+  
+  - path: "**/*.md"
+    instructions: |
+      - Check for proper markdown formatting
+      - Verify table formatting and blank lines
+      - Ensure proper heading hierarchy
+      - Check for broken links and references
+  
+  - path: "**/*.yaml"
+    instructions: |
+      - Validate YAML syntax and structure
+      - Check for proper indentation
+      - Verify configuration completeness
+  
+  - path: "tests/**"
+    instructions: |
+      - Ensure comprehensive test coverage
+      - Verify test isolation and independence
+      - Check for proper mocking and fixtures
+      - Validate test documentation and clarity
+
+# Custom instructions
+instructions: |
+  This is a GitHub Spec Kit Training Program repository. Please focus on:
+  
+  1. **Code Quality**: Ensure all Python scripts follow best practices
+  2. **Documentation**: Verify markdown formatting and content accuracy
+  3. **Testing**: Validate comprehensive unit test coverage
+  4. **Security**: Check for potential security issues in scripts
+  5. **Maintainability**: Ensure code is well-documented and maintainable
+  6. **Training Content**: Verify that training materials are accurate and helpful
+  
+  Pay special attention to:
+  - Defect tracking and resolution processes
+  - Training curriculum accuracy and completeness
+  - Integration with HX-Infrastructure Knowledge Base
+  - Unit test quality and coverage
+  - Documentation consistency and clarity
