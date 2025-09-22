@@ -55,7 +55,7 @@ cat .github/workflows/connectivity-check.yml
 # Test workflow functionality
 git add docs/analysis/
 git commit -m "Add initial analysis documentation"
-git push origin main
+git push origin "$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's|^origin/||')"
 ```
 
 **Deliverable:** Create `docs/analysis/workflow-assessment.md` documenting:
@@ -76,7 +76,7 @@ Use GitHub Spec Kit to create a specification for the overall integration projec
 
 ```bash
 # Initialize specification project
-uvx --from git+https://github.com/github/spec-kit.git specify init hx_kb_integration --ai copilot
+uvx --from git+https://github.com/github/spec-kit.git@v1.0.0 specify init hx_kb_integration --ai copilot
 
 cd hx_kb_integration
 ```
@@ -95,7 +95,7 @@ Create detailed specifications for content integration:
 
 ```bash
 # Create content-specific specification
-uvx --from git+https://github.com/github/spec-kit.git specify init content_integration --ai copilot
+uvx --from git+https://github.com/github/spec-kit.git@v1.0.0 specify init content_integration --ai copilot
 ```
 
 Specify requirements for:
@@ -112,7 +112,7 @@ Specify enhanced validation workflows for the knowledge base:
 
 ```bash
 # Create workflow specification
-uvx --from git+https://github.com/github/spec-kit.git specify init validation_workflows --ai copilot
+uvx --from git+https://github.com/github/spec-kit.git@v1.0.0 specify init validation_workflows --ai copilot
 ```
 
 Include specifications for:
@@ -205,7 +205,11 @@ mkdir -p scripts/validation
 
 # Create basic validation script
 cat > scripts/validation/validate-structure.sh << 'EOF'
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'
+	'
+
 # Basic structure validation script
 
 echo "Validating HX-KB structure..."
@@ -287,7 +291,7 @@ git commit -m "Day 1: Complete foundation structure and initial content
 - Complete initial analysis and specifications"
 
 # Push changes and test workflow
-git push origin main
+git push origin "$(git symbolic-ref --short refs/remotes/origin/HEAD | sed 's|^origin/||')"
 ```
 
 **Deliverable:** Successful commit and push with workflow validation
@@ -357,7 +361,7 @@ git config user.email "your.email@example.com"
 **Solution:**
 ```bash
 # Reinstall Spec Kit
-uvx --from git+https://github.com/github/spec-kit.git specify --help
+uvx --from git+https://github.com/github/spec-kit.git@v1.0.0 specify --help
 
 # Check UV installation
 uv --version

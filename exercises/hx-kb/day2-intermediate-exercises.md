@@ -19,7 +19,7 @@ cd /home/ubuntu/github_spec_training/HX-Infrastructure-Knowledge-Base
 
 # Create Sprint 1 specification
 uvx --from git+https://github.com/github/spec-kit.git specify init sprint1_documentation --ai copilot
-```
+```bash
 
 Using the `/specify` command, create specifications for Sprint 1 documentation including:
 - **Objective:** Transform basic infrastructure into structured, automated system
@@ -74,6 +74,7 @@ Create `docs/history/sprints/sprint-1-summary.md` with:
 - **Complexity Management:** Broke down complex tasks into smaller, manageable pieces
 
 ## Metrics and Impact
+
 | Metric | Before Sprint 1 | After Sprint 1 | Improvement |
 |--------|----------------|----------------|-------------|
 | Deployment Time | 45 minutes | 15 minutes | 67% reduction |
@@ -92,7 +93,7 @@ Create `docs/history/sprints/sprint-1-summary.md` with:
 - Monitoring and alerting integration
 - Performance optimization planning
 - Security hardening roadmap
-```
+```bash
 
 **Deliverable:** Complete Sprint 1 documentation with metrics and lessons learned
 
@@ -153,7 +154,7 @@ Create comprehensive architecture documentation that captures the system design,
 ```bash
 # Create architecture specification
 uvx --from git+https://github.com/github/spec-kit.git specify init architecture_documentation --ai copilot
-```
+```bash
 
 Create `docs/architecture/overview.md` with:
 
@@ -209,7 +210,7 @@ graph TB
     Mon --> AI
     Log --> AI
     AI --> K8s
-```
+```bash
 
 ## Component Details
 
@@ -291,7 +292,7 @@ graph TB
 - **RPO Target:** 5 minutes maximum data loss
 - **Failover Strategy:** Automated failover with manual override
 - **Testing:** Regular disaster recovery testing and validation
-```
+```bash
 
 **Deliverable:** Complete system architecture documentation with diagrams
 
@@ -324,7 +325,7 @@ Create detailed operational runbooks for key system management procedures.
 ```bash
 # Create deployment runbook specification
 uvx --from git+https://github.com/github/spec-kit.git specify init deployment_runbooks --ai copilot
-```
+```bash
 
 Create `docs/operations/runbooks/application-deployment.md`:
 
@@ -362,7 +363,7 @@ kubectl describe nodes | grep -A 5 "Allocated resources"
 # Verify monitoring systems
 curl -s http://prometheus:9090/-/healthy
 curl -s http://grafana:3000/api/health
-```
+```bash
 
 **Expected Output:** All nodes healthy, sufficient resources available, monitoring systems operational
 
@@ -381,7 +382,7 @@ git checkout main
 git pull origin main
 
 # Update application version
-sed -i 's/image: app:v[0-9.]*/image: app:v${NEW_VERSION}/' applications/app/deployment.yaml
+sed -i "s|image:\s*app:v[0-9.]*|image: app:v${NEW_VERSION}|" applications/app/deployment.yaml
 
 # Commit and push changes
 git add applications/app/deployment.yaml
@@ -391,7 +392,7 @@ git push origin main
 # Monitor ArgoCD sync
 argocd app sync app-production
 argocd app wait app-production --health
-```
+```bash
 
 **Expected Output:** ArgoCD successfully syncs and application reaches healthy state
 
@@ -416,7 +417,7 @@ kubectl logs -l app=myapp -n production --tail=50
 
 # Verify metrics collection
 curl -s http://prometheus:9090/api/v1/query?query=up{job="myapp"}
-```
+```bash
 
 **Expected Output:** All pods running, health endpoints responding, metrics being collected
 
@@ -441,7 +442,7 @@ curl -s -X POST http://myapp.production/api/test-endpoint \
 # Check database connectivity (if applicable)
 kubectl exec -it deployment/myapp -n production -- \
   /app/scripts/test-db-connection.sh
-```
+```bash
 
 **Expected Output:** All smoke tests pass, API endpoints responding correctly
 
@@ -473,7 +474,7 @@ kubectl rollout undo deployment/myapp -n production
 
 # Verify rollback success
 kubectl rollout status deployment/myapp -n production
-```
+```bash
 
 ### Planned Rollback
 For planned rollbacks:
@@ -487,7 +488,7 @@ git push origin main
 # Monitor ArgoCD sync
 argocd app sync app-production
 argocd app wait app-production --health
-```
+```bash
 
 ## Post-Deployment Validation
 
@@ -512,7 +513,7 @@ argocd app wait app-production --health
 ## Communication
 
 ### Deployment Notification Template
-```
+```bash
 Subject: [DEPLOYMENT] Application v${VERSION} deployed to Production
 
 Deployment Details:
@@ -533,7 +534,7 @@ Next Steps:
 - Rollback plan available if needed
 
 Contact: ${CONTACT_INFO}
-```
+```bash
 
 ### Incident Escalation
 If issues are detected:
@@ -541,7 +542,7 @@ If issues are detected:
 2. **15 minutes:** Escalate to team lead if unresolved
 3. **30 minutes:** Engage incident commander
 4. **60 minutes:** Consider rollback if no resolution path
-```
+```bash
 
 **Deliverable:** Complete deployment runbook with troubleshooting guide
 
@@ -596,7 +597,7 @@ mkdir -p templates/ansible/{role-template,playbook-template}
 # Create role template structure
 cd templates/ansible/role-template
 mkdir -p {tasks,handlers,templates,files,vars,defaults,meta}
-```
+```bash
 
 Create `templates/ansible/role-template/README.md`:
 ```markdown
@@ -606,7 +607,7 @@ Create `templates/ansible/role-template/README.md`:
 This template provides a standardized structure for Ansible roles in the HX-Infrastructure project.
 
 ## Directory Structure
-```
+```bash
 role-name/
 ├── tasks/          # Main tasks and task includes
 ├── handlers/       # Event handlers
@@ -616,7 +617,7 @@ role-name/
 ├── defaults/       # Default variables
 ├── meta/           # Role metadata and dependencies
 └── README.md       # Role documentation
-```
+```bash
 
 ## Usage
 1. Copy this template directory
@@ -631,7 +632,7 @@ role-name/
 - Include comprehensive documentation
 - Implement idempotent tasks
 - Add appropriate tags for task control
-```
+```bash
 
 **Deliverable:** Complete Ansible role template with documentation
 
@@ -673,7 +674,11 @@ mkdir -p scripts/validation
 
 # Create comprehensive validation script
 cat > scripts/validation/validate-day2-content.sh << 'EOF'
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'
+	'
+
 # Day 2 content validation script
 
 echo "Validating Day 2 HX-KB content..."
@@ -735,7 +740,7 @@ echo "Day 2 content validation passed!"
 EOF
 
 chmod +x scripts/validation/validate-day2-content.sh
-```
+```bash
 
 **Deliverable:** Comprehensive validation framework for Day 2 content
 
@@ -761,7 +766,7 @@ find docs -name "*.md" -exec grep -l "\[.*\](.*\.md)" {} \; | while read file; d
         fi
     done
 done
-```
+```bash
 
 Review and improve:
 - Content completeness and accuracy
@@ -801,7 +806,7 @@ uvx --from git+https://github.com/github/spec-kit.git specify --help
 # Reinstall if needed
 uv cache clean
 uvx --from git+https://github.com/github/spec-kit.git specify init test_project --ai copilot
-```
+```bash
 
 #### Issue: Content validation fails
 **Symptoms:** Validation scripts report missing content
@@ -812,7 +817,7 @@ uvx --from git+https://github.com/github/spec-kit.git specify init test_project 
 
 # Create missing content based on templates
 cp templates/documentation/sprint-summary-template.md docs/history/sprints/sprint-1-summary.md
-```
+```bash
 
 #### Issue: Markdown formatting issues
 **Symptoms:** Inconsistent formatting across documents
@@ -823,7 +828,7 @@ npm install -g markdownlint-cli
 
 # Fix formatting issues
 find docs -name "*.md" -exec markdownlint --fix {} \;
-```
+```bash
 
 ## Next Steps
 

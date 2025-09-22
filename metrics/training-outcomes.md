@@ -9,6 +9,7 @@ This document establishes the framework for tracking training effectiveness and 
 ### Quantitative Metrics
 
 #### Training Completion Metrics
+
 | Metric | Target | Measurement Method | Frequency |
 |--------|--------|-------------------|-----------|
 | Course Completion Rate | 90% | Participant tracking | End of program |
@@ -17,6 +18,7 @@ This document establishes the framework for tracking training effectiveness and 
 | Time to Competency | 5 days | Skills assessment | End of program |
 
 #### Project Outcome Metrics
+
 | Metric | Target | Measurement Method | Frequency |
 |--------|--------|-------------------|-----------|
 | HX-KB Content Coverage | 80% | Content audit | End of program |
@@ -25,6 +27,7 @@ This document establishes the framework for tracking training effectiveness and 
 | Template Reusability | 90% | Usage tracking | Post-program |
 
 #### Knowledge Retention Metrics
+
 | Metric | Target | Measurement Method | Frequency |
 |--------|--------|-------------------|-----------|
 | Concept Understanding | 85% | Assessment scores | Daily |
@@ -162,6 +165,9 @@ METRICS_DIR="metrics/daily"
 DATE=$(date +%Y-%m-%d)
 PARTICIPANT_ID="$1"
 DAY="$2"
+
+# Ensure directory exists
+mkdir -p "$METRICS_DIR"
 
 # Create daily metrics file
 cat > "$METRICS_DIR/$DATE-$PARTICIPANT_ID-day$DAY.json" << EOF
