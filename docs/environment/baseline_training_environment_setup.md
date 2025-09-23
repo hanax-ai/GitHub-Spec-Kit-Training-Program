@@ -35,11 +35,11 @@ This guide establishes a baseline training environment using a **verification-fi
 - **Do → Verify → Log**: Every step includes verification and logging to ENV_READINESS.md
 - **Minimal Scope**: Only tools required for Module 1 (defer optional components)
 - **Artifact Management**: Structured approach to file edits with documentation
-- **Communicative Naming**: Specific virtual environment names (.venv-hx-spec-kit-py311)
+- **Communicative Naming**: Specific virtual environment names (.venv-hx-spec-kit-py312)
 
 ### Success Criteria
 - All verification steps pass and logged in ENV_READINESS.md
-- Working VS Code Remote-SSH connection with Python 3.11 environment
+- Working VS Code Remote-SSH connection with Python 3.12 environment
 - Standardized hosts file configuration
 - Foundation ready for Module 1 training activities
 
@@ -83,7 +83,7 @@ All verification results must be logged using the provided template. Example:
 - OpenSSH + Remote-SSH - Remote development and file operations
 - CA Certificates - TLS trust for git/curl operations
 - Git - Clone/pull training repositories
-- Python 3.11 + venv + pip - Run training scripts and tests
+- Python 3.12 + venv + pip - Run training scripts and tests
 - VS Code - IDE with Remote-SSH extension
 
 **Deferred Components (Optional):**
@@ -175,36 +175,36 @@ git config --list | grep -E "(user.name|user.email|init.defaultBranch)"
 
 **Log:** Record Git installation and configuration in ENV_READINESS.md
 
-### Step 3: Python 3.11 Environment Setup
+### Step 3: Python 3.12 Environment Setup
 
 **Do:**
 ```bash
-# Install Python 3.11 and development tools
-sudo apt install -y python3.11 python3.11-venv python3.11-dev python3-pip
+# Install Python 3.12 and development tools
+sudo apt install -y python3 python3-venv python3-dev python3-pip
 
-# Use Python 3.11 explicitly for virtual environments (do not change system python3)
-# Example: python3.11 -m venv .venv-hx-spec-kit-py311
+# Use Python 3.12 explicitly for virtual environments (do not change system python3)
+# Example: python3 -m venv .venv-hx-spec-kit-py312
 ```
 
 **Verify:**
 ```bash
 # Check Python version
 python3 --version
-# Should show: Python 3.11.x
+# Should show: Python 3.12.x
 
 # Check pip installation
 python3 -m pip --version
 # Should show pip version
 
 # Test virtual environment creation
-python3.11 -m venv /tmp/test-venv
+python3 -m venv /tmp/test-venv
 source /tmp/test-venv/bin/activate
 python --version
 deactivate
 rm -rf /tmp/test-venv
 ```
 
-**Log:** Record Python 3.11 installation and venv capability in ENV_READINESS.md
+**Log:** Record Python 3.12 installation and venv capability in ENV_READINESS.md
 
 ### Step 4: OpenSSH Server Configuration
 
@@ -539,11 +539,11 @@ ping dev-test.hana-x.ai -n 1
 
 **Naming Convention:**
 - Format: `.venv-{project}-{purpose}-{runtime}`
-- Example: `.venv-hx-spec-kit-py311`
+- Example: `.venv-hx-spec-kit-py312`
 - Components:
   - `hx`: Project prefix (HANA-X)
   - `spec-kit`: Repository/module name
-  - `py311`: Runtime version (Python 3.11)
+  - `py312`: Runtime version (Python 3.12)
 
 ### Step 2: Create Training Virtual Environment
 
@@ -554,10 +554,10 @@ mkdir -p ~/training/hx-spec-kit
 cd ~/training/hx-spec-kit
 
 # Create virtual environment with communicative name
-python3.11 -m venv .venv-hx-spec-kit-py311
+python3 -m venv .venv-hx-spec-kit-py312
 
 # Activate virtual environment
-source .venv-hx-spec-kit-py311/bin/activate
+source .venv-hx-spec-kit-py312/bin/activate
 
 # Upgrade pip and install basic packages
 pip install --upgrade pip
@@ -568,11 +568,11 @@ pip install pytest requests
 ```bash
 # Check virtual environment activation
 which python
-# Should show: /home/agent0/training/hx-spec-kit/.venv-hx-spec-kit-py311/bin/python
+# Should show: /home/agent0/training/hx-spec-kit/.venv-hx-spec-kit-py312/bin/python
 
 # Check Python version in venv
 python --version
-# Should show: Python 3.11.x
+# Should show: Python 3.12.x
 
 # Check installed packages
 pip list
@@ -588,7 +588,7 @@ pip list
 2. Open ~/training/hx-spec-kit folder
 3. Press Ctrl+Shift+P
 4. Type "Python: Select Interpreter"
-5. Choose: `./venv-hx-spec-kit-py311/bin/python`
+5. Choose: `./venv-hx-spec-kit-py312/bin/python`
 
 **Verify:**
 1. Check status bar shows correct Python interpreter
@@ -619,9 +619,9 @@ import subprocess
 import socket
 
 def test_python_version():
-    """Test Python 3.11 is available"""
+    """Test Python 3.12 is available"""
     version = sys.version_info
-    assert version.major == 3 and version.minor == 11, f"Expected Python 3.11, got {version.major}.{version.minor}"
+    assert version.major == 3 and version.minor == 12, f"Expected Python 3.12, got {version.major}.{version.minor}"
     print(f"✅ Python version: {version.major}.{version.minor}.{version.micro}")
 
 def test_git_available():
@@ -642,7 +642,7 @@ def test_domain_resolution():
 def test_virtual_environment():
     """Test virtual environment is active"""
     venv_path = sys.prefix
-    assert '.venv-hx-spec-kit-py311' in venv_path, f"Virtual environment not active: {venv_path}"
+    assert '.venv-hx-spec-kit-py312' in venv_path, f"Virtual environment not active: {venv_path}"
     print(f"✅ Virtual environment active: {venv_path}")
 
 if __name__ == "__main__":
@@ -662,7 +662,7 @@ chmod +x ~/training/hx-spec-kit/test_environment.py
 ```bash
 # Run environment test script
 cd ~/training/hx-spec-kit
-source .venv-hx-spec-kit-py311/bin/activate
+source .venv-hx-spec-kit-py312/bin/activate
 python test_environment.py
 # Should show all tests passing
 ```
@@ -699,8 +699,8 @@ python test_environment.py
 #### Python Virtual Environment Issues
 **Problem:** Virtual environment not activating
 **Solution:**
-1. Check Python 3.11 installation: `python3.11 --version`
-2. Recreate virtual environment: `rm -rf .venv-* && python3.11 -m venv .venv-hx-spec-kit-py311`
+1. Check Python 3.12 installation: `python3 --version`
+2. Recreate virtual environment: `rm -rf .venv-* && python3 -m venv .venv-hx-spec-kit-py312`
 3. Check permissions: `ls -la .venv-*`
 
 #### Domain Resolution Issues
@@ -722,13 +722,13 @@ python test_environment.py
 ## Supporting Templates
 
 ### ENV_READINESS.md Template
-See: `ENV_READINESS.md` for verification logging template
+See: [ENV_READINESS.md](ENV_READINESS.md) for verification logging template
 
 ### Artifact Header Template
-See: `Artifact_Header_Template.md` for file edit documentation requirements
+See: [Artifact Header Template](../templates/Artifact_Header_Template.md) for file edit documentation requirements
 
 ### Hosts File Template
-See: `Hosts_File_Template.txt` for standardized HX-Infrastructure entries
+See: [Hosts File Template](../templates/Hosts_File_Template.txt) for standardized HX-Infrastructure entries
 
 ---
 
@@ -742,7 +742,7 @@ See: `Hosts_File_Template.txt` for standardized HX-Infrastructure entries
 ### Ubuntu Server Setup
 - [ ] System updated and CA certificates installed
 - [ ] Git installed and configured
-- [ ] Python 3.11 installed with venv capability
+- [ ] Python 3.12 installed with venv capability
 - [ ] OpenSSH server running and configured
 - [ ] Development tools installed
 - [ ] All steps verified and logged
@@ -772,7 +772,7 @@ See: `Hosts_File_Template.txt` for standardized HX-Infrastructure entries
 - [ ] All steps verified and logged
 
 ### Virtual Environment Setup
-- [ ] Communicative virtual environment created (.venv-hx-spec-kit-py311)
+- [ ] Communicative virtual environment created (.venv-hx-spec-kit-py312)
 - [ ] Virtual environment activated and tested
 - [ ] VS Code Python interpreter configured
 - [ ] All steps verified and logged
@@ -786,7 +786,7 @@ See: `Hosts_File_Template.txt` for standardized HX-Infrastructure entries
 ### Success Criteria Met
 - [ ] All verification steps passed and logged
 - [ ] Working VS Code Remote-SSH connection
-- [ ] Python 3.11 virtual environment functional
+- [ ] Python 3.12 virtual environment functional
 - [ ] HX-Infrastructure domain resolution working
 - [ ] Foundation ready for Module 1 training activities
 
